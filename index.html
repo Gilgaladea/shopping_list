@@ -5,113 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lista zakupów</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    header {
-      background: #3f51b5;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .container {
-      display: flex;
-      flex: 1;
-      height: calc(100vh - 100px);
-    }
-
-    .column {
-      padding: 1rem;
-      overflow-y: auto;
-    }
-
-    .left, .right {
-      width: 25%;
-      background-color: #f2f2f2;
-    }
-
-    .middle {
-      width: 50%;
-      background-color: #fff;
-      border-left: 1px solid #ccc;
-      border-right: 1px solid #ccc;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    li {
-      margin: 0.5rem 0;
-      padding: 0.5rem;
-      background-color: #e6e6e6;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    li.to-buy {
-      background-color: #d1ffd1;
-      font-weight: bold;
-    }
-
-    #cookie-banner {
-      display: none;
-      background: #222;
-      color: #fff;
-      padding: 1rem;
-      text-align: center;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      z-index: 999;
-    }
-
-    #cookie-banner button {
-      margin-left: 1rem;
-      padding: 0.5rem 1rem;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 0.5rem;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-  </style>
 </head>
 <body>
-
-  <header>
-    <h1>🛒 Lista zakupów</h1>
-  </header>
-
   <div class="container">
-    <!-- Lewa kolumna – Kategorie -->
-    <div class="column left">
-      <h2>Kategorie</h2>
-      <ul id="category-list"></ul>
-    </div>
+    <!-- Lewa kolumna: Menu -->
+    <aside class="sidebar">
+      <h2>Menu</h2>
+      <form id="addItemForm">
+        <input type="text" placeholder="Produkt" id="itemName" required />
+        <select id="itemCategory">
+          <option value="">Wybierz kategorię</option>
+          <option value="Nabiał">Nabiał</option>
+          <option value="Pieczywo">Pieczywo</option>
+          <option value="Owoce">Owoce</option>
+        </select>
+        <button type="submit">Dodaj</button>
+      </form>
+    </aside>
 
-    <!-- Środkowa kolumna – Wszystkie produkty -->
-    <div class="column middle">
-      <h2>Produkty</h2>
-      <input type="text" id="search" placeholder="Szukaj produktu..." />
-      <ul id="product-list"></ul>
-    </div>
-
-    <!-- Prawa kolumna – Do kupienia -->
-    <div class="column right">
+    <!-- Środek: Do kupienia -->
+    <main class="main">
       <h2>Do kupienia</h2>
-      <ul id="to-buy-list"></ul>
-    </div>
+      <ul id="toBuyList"></ul>
+    </main>
+
+    <!-- Prawa kolumna: Wszystkie produkty -->
+    <section class="product-list">
+      <h2>Wszystkie produkty</h2>
+      <input type="text" placeholder="Szukaj..." id="searchInput" />
+      <div class="category-list" id="categoryList">
+        <!-- Kategorie będą dynamicznie -->
+      </div>
+      <div id="productContainer"></div>
+    </section>
   </div>
 
   <div id="cookie-banner">
@@ -119,7 +45,6 @@
     <button onclick="acceptCookies()">OK</button>
   </div>
 
-  <!-- Główna logika -->
-  <script type="module" src="js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
