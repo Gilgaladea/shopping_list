@@ -79,6 +79,12 @@ function toggleToBuy(id) {
   renderLists();
 }
 
+function deleteProduct(id) {
+  item = shoppingList.filter(i => i.id !== id);
+  localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+  renderLists();
+}
+
 document.getElementById("searchInput").addEventListener("input", renderLists);
 
 // Inicjalizacja
