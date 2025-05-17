@@ -3,43 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lista zakupów</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Lista Zakupów</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <div id="cookie-banner">Ta strona korzysta z cookies 🍪 <button onclick="acceptCookies()">OK</button></div>
   <div class="container">
-    <!-- Lewa kolumna: Menu -->
-    <aside class="sidebar">
-      <h2>Menu</h2>
-      <input type="text" placeholder="Szukaj..." id="searchInput" />
-      <div class="category-list" id="categoryList">
-        <!-- Kategorie będą dynamicznie -->
-      </div>
-      <form id="addItemForm">
-        <input type="text" placeholder="Produkt" id="itemName" required />
-        <select id="itemCategory">
-          <option value="">Wybierz kategorię</option>
-          <option value="Nabiał">Nabiał</option>
-          <option value="Pieczywo">Pieczywo</option>
-          <option value="Owoce">Owoce</option>
-        </select>
-        <button type="submit">Dodaj</button>
-      </form>
+    <aside class="sidebar-left">
+      <h2 data-i18n="categories">Kategorie</h2>
+      <ul id="category-list"></ul>
     </aside>
 
-    <!-- Środek: Do kupienia -->
-    <main class="main">
-      <h2>Lista zakupów</h2>
-      <ul id="toBuyList"></ul>
+    <main class="center">
+      <h1 data-i18n="shopping_list">Lista zakupów</h1>
+      <input type="text" id="search" placeholder="🔍 Szukaj..." />
+      <ul id="product-list"></ul>
     </main>
 
-    <!-- Prawa kolumna: Wszystkie produkty -->
-    <section class="product-list">
-      <h2>Wszystkie produkty</h2>
-      <div id="productContainer"></div>
-    </section>
+    <aside class="sidebar-right">
+      <h2 data-i18n="to_buy">Do kupienia</h2>
+      <ul id="to-buy-list"></ul>
+    </aside>
   </div>
 
-  <script src="script.js"></script>
+  <script type="module" src="js/controller.js"></script>
 </body>
 </html>
