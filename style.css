@@ -44,3 +44,20 @@ li {
   align-items: center;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .sidebar-left, .center, .sidebar-right {
+    width: 100%;
+  }
+}
+
+#cookie-banner {
+  background: #222;
+  color: #fff;
+  padding: 0.5rem;
+  text-align: center;
+  display: none;
+}
