@@ -1,6 +1,6 @@
 // === MODEL ===
 let shoppingList = JSON.parse(localStorage.getItem("shoppingList")) || [];
-localStorage.removeItem("shoppingList");
+
 function saveData() {
   localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
 }
