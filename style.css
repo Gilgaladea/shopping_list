@@ -44,3 +44,24 @@ li {
   align-items: center;
   justify-content: space-between;
 }
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-container input[type="text"] {
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 2rem; /* padding-left dla miejsca na ikonę */
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-container .search-icon {
+  position: absolute;
+  left: 0.6rem;
+  color: #888;
+  pointer-events: none;
+}
