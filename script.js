@@ -40,9 +40,9 @@ function renderLists() {
       li.appendChild(checkbox);
       li.appendChild(document.createTextNode(" " + item.name));
 
-      const deleteBtn = document.createElement("button");
-      deleteBtn.textContent = "🗑️";
-      deleteBtn.style.marginLeft = "10px";
+      const deleteBtn = document.createElement("span");
+      deleteBtn.textContent = "×";
+      deleteBtn.className = "delete-btn";
       deleteBtn.addEventListener("click", () => deleteProduct(item.id));
       li.appendChild(deleteBtn);
       catBlock.appendChild(li);
