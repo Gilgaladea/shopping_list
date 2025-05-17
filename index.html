@@ -11,10 +11,6 @@
     <!-- Lewa kolumna: Menu -->
     <aside class="sidebar">
       <h2>Menu</h2>
-      <input type="text" placeholder="Szukaj..." id="searchInput" />
-      <div class="category-list" id="categoryList">
-        <!-- Kategorie będą dynamicznie -->
-      </div>
       <form id="addItemForm">
         <input type="text" placeholder="Produkt" id="itemName" required />
         <select id="itemCategory">
@@ -36,6 +32,10 @@
     <!-- Prawa kolumna: Wszystkie produkty -->
     <section class="product-list">
       <h2>Wszystkie produkty</h2>
+      <input type="text" placeholder="Szukaj..." id="searchInput" />
+      <div class="category-list" id="categoryList">
+        <!-- Kategorie będą dynamicznie -->
+      </div>
       <div id="productContainer"></div>
     </section>
   </div>
