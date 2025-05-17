@@ -65,3 +65,24 @@ li {
   color: #888;
   pointer-events: none;
 }
+
+li {
+  position: relative;
+  padding-right: 20px; /* Miejsce na X */
+}
+
+.delete-btn {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+li:hover .delete-btn {
+  opacity: 1;
+}
