@@ -3,29 +3,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lista Zakupów</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>Lista zakupów</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #3f51b5;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 100px);
+    }
+
+    .column {
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .left, .right {
+      width: 25%;
+      background-color: #f2f2f2;
+    }
+
+    .middle {
+      width: 50%;
+      background-color: #fff;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      background-color: #e6e6e6;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    li.to-buy {
+      background-color: #d1ffd1;
+      font-weight: bold;
+    }
+
+    #cookie-banner {
+      display: none;
+      background: #222;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    #cookie-banner button {
+      margin-left: 1rem;
+      padding: 0.5rem 1rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+  </style>
 </head>
 <body>
-  <div id="cookie-banner">Ta strona korzysta z cookies 🍪 <button onclick="acceptCookies()">OK</button></div>
+
+  <header>
+    <h1>🛒 Lista zakupów</h1>
+  </header>
+
   <div class="container">
-    <aside class="sidebar-left">
-      <h2 data-i18n="categories">Kategorie</h2>
+    <!-- Lewa kolumna – Kategorie -->
+    <div class="column left">
+      <h2>Kategorie</h2>
       <ul id="category-list"></ul>
-    </aside>
+    </div>
 
-    <main class="center">
-      <h1 data-i18n="shopping_list">Lista zakupów</h1>
-      <input type="text" id="search" placeholder="🔍 Szukaj..." />
+    <!-- Środkowa kolumna – Wszystkie produkty -->
+    <div class="column middle">
+      <h2>Produkty</h2>
+      <input type="text" id="search" placeholder="Szukaj produktu..." />
       <ul id="product-list"></ul>
-    </main>
+    </div>
 
-    <aside class="sidebar-right">
-      <h2 data-i18n="to_buy">Do kupienia</h2>
+    <!-- Prawa kolumna – Do kupienia -->
+    <div class="column right">
+      <h2>Do kupienia</h2>
       <ul id="to-buy-list"></ul>
-    </aside>
+    </div>
   </div>
 
-  <script type="module" src="js/controller.js"></script>
+  <div id="cookie-banner">
+    Ta strona używa plików cookies w celu poprawy działania.
+    <button onclick="acceptCookies()">OK</button>
+  </div>
+
+  <!-- Główna logika -->
+  <script type="module" src="js/script.js"></script>
 </body>
 </html>
