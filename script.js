@@ -80,8 +80,8 @@ function toggleToBuy(id) {
 }
 
 function deleteProduct(id) {
-  item = shoppingList.filter(i => i.id !== id);
-  localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+  shoppingList = shoppingList.filter(i => i.id !== id);
+  saveData();
   renderLists();
 }
 
