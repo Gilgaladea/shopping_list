@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista zakupów</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Lewa kolumna: Menu -->
+    <aside class="sidebar">
+      <h2>Menu</h2>
+      <input type="text" placeholder="Szukaj..." id="searchInput" />
+      <div class="category-list" id="categoryList">
+        <!-- Kategorie będą dynamicznie -->
+      </div>
+      <form id="addItemForm">
+        <input type="text" placeholder="Produkt" id="itemName" required />
+        <select id="itemCategory">
+          <option value="">Wybierz kategorię</option>
+          <option value="Nabiał">Nabiał</option>
+          <option value="Pieczywo">Pieczywo</option>
+          <option value="Owoce">Owoce</option>
+        </select>
+        <button type="submit">Dodaj</button>
+      </form>
+    </aside>
 
+    <!-- Środek: Do kupienia -->
+    <main class="main">
+      <h2>🛒 Do kupienia</h2>
+      <ul id="toBuyList"></ul>
+    </main>
+
+    <!-- Prawa kolumna: Wszystkie produkty -->
+    <section class="product-list">
+      <h2>Wszystkie produkty</h2>
+      <div id="productContainer"></div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
