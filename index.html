@@ -11,6 +11,10 @@
     <!-- Lewa kolumna: Menu -->
     <aside class="sidebar">
       <h2>Menu</h2>
+      <input type="text" placeholder="Szukaj..." id="searchInput" />
+      <div class="category-list" id="categoryList">
+        <!-- Kategorie będą dynamicznie -->
+      </div>
       <form id="addItemForm">
         <input type="text" placeholder="Produkt" id="itemName" required />
         <select id="itemCategory">
@@ -25,24 +29,15 @@
 
     <!-- Środek: Do kupienia -->
     <main class="main">
-      <h2>Do kupienia</h2>
+      <h2>Lista zakupów</h2>
       <ul id="toBuyList"></ul>
     </main>
 
     <!-- Prawa kolumna: Wszystkie produkty -->
     <section class="product-list">
       <h2>Wszystkie produkty</h2>
-      <input type="text" placeholder="Szukaj..." id="searchInput" />
-      <div class="category-list" id="categoryList">
-        <!-- Kategorie będą dynamicznie -->
-      </div>
       <div id="productContainer"></div>
     </section>
-  </div>
-
-  <div id="cookie-banner">
-    Ta strona używa plików cookies w celu poprawy działania.
-    <button onclick="acceptCookies()">OK</button>
   </div>
 
   <script src="script.js"></script>
