@@ -8,15 +8,17 @@
 </head>
 <body>
   <div class="container">
-    <!-- Lewa kolumna: Menu -->
+    <!-- Menu -->
     <aside class="sidebar">
       <h3>Menu</h3>
+      <h4 class="centered_text">Ustawienia</h4>
       <div class="theme-toggle-container">
         <button id="themeToggle">Tryb ciemny</button>
       </div>
       <hr />
+      <h4 class="centered_text">Dodaj nowy produkt</h4>
       <form id="addItemForm" class="add-form">
-        <input type="text" placeholder="Nowy produkt" id="itemName" required />
+        <input type="text" placeholder="Nazwa produktu" id="itemName" required />
         <select id="itemCategory">
           <option value="">Wybierz kategorię</option>
           <option value="Nabiał">Nabiał</option>
@@ -25,15 +27,17 @@
         </select>
         <button type="submit">Dodaj</button>
       </form>
+      <hr />
+      <h4 class="centered_text">Zmień kolejność kategorii</h4>
     </aside>
 
-    <!-- Środek: Do kupienia -->
+    <!-- Lista zakupów -->
     <main class="main">
       <h2>Lista zakupów</h2>
       <ul id="toBuyList"></ul>
     </main>
 
-    <!-- Prawa kolumna: Wszystkie produkty -->
+    <!-- Wszystkie produkty -->
     <section class="product-list">
       <h3>Wszystkie produkty</h3>
       <div class="search-container">

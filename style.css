@@ -54,7 +54,7 @@ li {
 
 .search-container input[type="text"] {
   width: 100%;
-  padding: 0.5rem 0.5rem 0.5rem 2rem; /* padding-left dla miejsca na ikonę */
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -109,7 +109,7 @@ li:hover .delete-btn {
 .add-form button {
   width: 100%;
   box-sizing: border-box;
-  padding: 0.6rem 0.8rem;
+  padding: 0.6rem 0.2rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -176,4 +176,12 @@ body.dark-mode button {
 
 body.dark-mode hr {
   border-top: 1px solid #f0f0f0;
+}
+
+#addItemForm {
+  text-align-last: center;
+}
+
+.centered_text {
+  text-align: center;
 }
