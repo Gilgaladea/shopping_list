@@ -32,19 +32,23 @@ function renderLists() {
 
       const li = document.createElement("li");
       li.classList.add("product-item");
+
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.checked = item.toBuy;
-
       checkbox.addEventListener("change", () => toggleToBuy(item.id));
 
-      li.appendChild(checkbox);
-      li.appendChild(document.createTextNode(" " + item.name));
+      const label = document.createElement("span");
+      label.className = "product-label";
+      label.textContent = item.name;
 
       const deleteBtn = document.createElement("span");
       deleteBtn.textContent = "×";
       deleteBtn.className = "delete-btn";
       deleteBtn.addEventListener("click", () => deleteProduct(item.id));
+
+      li.appendChild(checkbox);
+      li.appendChild(label);
       li.appendChild(deleteBtn);
       catBlock.appendChild(li);
     });
@@ -52,16 +56,22 @@ function renderLists() {
     productContainer.appendChild(catBlock);
   }
 
-  // To Buy
+  // To Buy list
   shoppingList.filter(i => i.toBuy).forEach(item => {
     const li = document.createElement("li");
+    li.classList.add("product-item");
+
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = true;
     checkbox.addEventListener("change", () => toggleToBuy(item.id));
 
+    const label = document.createElement("span");
+    label.className = "product-label";
+    label.textContent = item.name;
+
     li.appendChild(checkbox);
-    li.appendChild(document.createTextNode(" " + item.name));
+    li.appendChild(label);
     toBuyList.appendChild(li);
   });
 }
