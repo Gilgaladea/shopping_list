@@ -39,13 +39,7 @@ function renderLists() {
       checkbox.addEventListener("change", () => toggleToBuy(item.id));
 
       li.appendChild(checkbox);
-      const label = document.createElement("span");
-      label.className = "product-label";
-      label.textContent = item.name;
-      
-      li.appendChild(checkbox);
-      li.appendChild(label);
-      li.appendChild(deleteBtn);
+      li.appendChild(document.createTextNode(" " + item.name));
 
       const deleteBtn = document.createElement("span");
       deleteBtn.textContent = "×";
