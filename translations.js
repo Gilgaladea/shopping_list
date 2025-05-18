@@ -16,7 +16,15 @@ const translations = {
     categories: {
       dairy: "Nabiał",
       bread: "Pieczywo",
-      fruits: "Owoce"
+      fruits: "Owoce",
+      vegetables: "Warzywa",
+      meat: "Mięso",
+      fish: "Ryby",
+      dry: "Produkty suche",
+      frozen: "Mrożonki",
+      beverages: "Napoje",
+      snacks: "Przekąski",
+      other: "Inne"
     }
   },
   en: {
@@ -36,7 +44,16 @@ const translations = {
     categories: {
       dairy: "Dairy",
       bread: "Bread",
-      fruits: "Fruits"
+      fruits: "Fruits",
+      vegetables: "Vegetables",
+      meat: "Meat",
+      fish: "Fish",
+      dry: "Dry goods",
+      frozen: "Frozen foods",
+      beverages: "Beverages",
+      snacks: "Snacks",
+      other: "Other"
+
     }
   }
 };
