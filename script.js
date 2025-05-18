@@ -121,6 +121,11 @@ window.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("dark-mode");
   }
 
+  const savedLang = localStorage.getItem("lang");
+  if (savedLang === "en" || savedLang === "pl") {
+    currentLang = savedLang;
+  }
+
   const isDark = document.body.classList.contains("dark-mode");
   document.getElementById("themeToggle").textContent = isDark
     ? translations[currentLang].themeToggleLight
@@ -160,6 +165,7 @@ for (let i = 1; i < select.options.length; i++) {
 
 document.getElementById("languageToggle").addEventListener("click", () => {
   currentLang = currentLang === "pl" ? "en" : "pl";
+  localStorage.setItem("lang", currentLang);
   updateLanguage();
 });
 
