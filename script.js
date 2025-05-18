@@ -106,3 +106,21 @@ document.getElementById("searchInput").addEventListener("input", renderLists);
 
 // Inicjalizacja
 renderLists();
+
+document.getElementById("themeToggle").addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  const isDark = document.body.classList.contains("dark-mode");
+  document.getElementById("themeToggle").textContent = isDark ? "Tryb jasny" : "Tryb ciemny";
+
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+});
+
+// Załaduj zapisany tryb
+window.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    document.getElementById("themeToggle").textContent = "Tryb jasny";
+  }
+});

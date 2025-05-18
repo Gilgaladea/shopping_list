@@ -10,9 +10,13 @@
   <div class="container">
     <!-- Lewa kolumna: Menu -->
     <aside class="sidebar">
-      <h2>Menu</h2>
-      <form id="addItemForm">
-        <input type="text" placeholder="Produkt" id="itemName" required />
+      <h3>Menu</h3>
+      <div class="theme-toggle-container">
+        <button id="themeToggle">Tryb ciemny</button>
+      </div>
+      <hr />
+      <form id="addItemForm" class="add-form">
+        <input type="text" placeholder="Nowy produkt" id="itemName" required />
         <select id="itemCategory">
           <option value="">Wybierz kategorię</option>
           <option value="Nabiał">Nabiał</option>
@@ -31,7 +35,7 @@
 
     <!-- Prawa kolumna: Wszystkie produkty -->
     <section class="product-list">
-      <h2>Wszystkie produkty</h2>
+      <h3>Wszystkie produkty</h3>
       <div class="search-container">
         <input type="text" id="searchInput" placeholder="Szukaj" />
       </div>
