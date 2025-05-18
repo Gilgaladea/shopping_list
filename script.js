@@ -24,7 +24,7 @@ function renderLists() {
   for (let category in categories) {
     const catBlock = document.createElement("div");
     const title = document.createElement("h3");
-    title.textContent = category;
+    title.textContent = translations[currentLang].categories[category] || category;
     catBlock.appendChild(title);
 
     categories[category].forEach(item => {
@@ -104,23 +104,64 @@ function deleteProduct(id) {
 
 document.getElementById("searchInput").addEventListener("input", renderLists);
 
-// Inicjalizacja
-renderLists();
-
 document.getElementById("themeToggle").addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 
   const isDark = document.body.classList.contains("dark-mode");
-  document.getElementById("themeToggle").textContent = isDark ? "Tryb jasny" : "Tryb ciemny";
+document.getElementById("themeToggle").textContent = isDark
+  ? translations[currentLang].themeToggleLight
+  : translations[currentLang].themeToggleDark;
 
   localStorage.setItem("theme", isDark ? "dark" : "light");
 });
 
-// Załaduj zapisany tryb
 window.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     document.body.classList.add("dark-mode");
-    document.getElementById("themeToggle").textContent = "Tryb jasny";
   }
+
+  const isDark = document.body.classList.contains("dark-mode");
+  document.getElementById("themeToggle").textContent = isDark
+    ? translations[currentLang].themeToggleLight
+    : translations[currentLang].themeToggleDark;
+
+  updateLanguage();
 });
+
+let currentLang = "pl";
+
+function updateLanguage() {
+  const t = translations[currentLang];
+
+  document.querySelector(".sidebar h3").textContent = t.menu;
+  document.querySelector(".sidebar h4.centered_text").textContent = t.settings;
+  document.querySelectorAll(".sidebar h4.centered_text")[1].textContent = t.addProduct;
+  document.querySelector("#itemName").placeholder = t.productPlaceholder;
+  document.querySelector("#itemCategory").options[0].text = t.categoryPlaceholder;
+  document.querySelector("#addItemForm button").textContent = t.addButton;
+  document.querySelectorAll(".sidebar h4.centered_text")[2].textContent = t.switchOrder;
+  document.querySelector(".main h2").textContent = t.toBuyTitle;
+  document.querySelector(".product-list h3").textContent = t.allProducts;
+  document.querySelector("#searchInput").placeholder = t.search;
+  const isDark = document.body.classList.contains("dark-mode");
+document.querySelector("#themeToggle").textContent = isDark
+  ? t.themeToggleLight
+  : t.themeToggleDark;
+  document.querySelector("#languageToggle").textContent = t.languageToggle;
+  const select = document.getElementById("itemCategory");
+for (let i = 1; i < select.options.length; i++) {
+  const val = select.options[i].value;
+  select.options[i].textContent = translations[currentLang].categories[val];
+}
+
+  renderLists();
+}
+
+document.getElementById("languageToggle").addEventListener("click", () => {
+  currentLang = currentLang === "pl" ? "en" : "pl";
+  updateLanguage();
+});
+
+// Inicjalizacja
+renderLists();

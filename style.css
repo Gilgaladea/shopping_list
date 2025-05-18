@@ -125,7 +125,7 @@ li:hover .delete-btn {
   background-color: #e0e0e0;
 }
 
-.theme-toggle-container {
+.toggle-container {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 10px;
@@ -133,6 +133,15 @@ li:hover .delete-btn {
 }
 
 #themeToggle {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#languageToggle {
   background: none;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -178,7 +187,7 @@ body.dark-mode hr {
   border-top: 1px solid #f0f0f0;
 }
 
-#addItemForm {
+#itemCategory {
   text-align-last: center;
 }
 

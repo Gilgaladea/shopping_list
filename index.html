@@ -8,22 +8,26 @@
 </head>
 <body>
   <div class="container">
+
     <!-- Menu -->
     <aside class="sidebar">
       <h3>Menu</h3>
       <h4 class="centered_text">Ustawienia</h4>
-      <div class="theme-toggle-container">
+      <div class="toggle-container">
+        <button id="languageToggle">English</button>
+      </div>
+      <div class="toggle-container">
         <button id="themeToggle">Tryb ciemny</button>
       </div>
       <hr />
       <h4 class="centered_text">Dodaj nowy produkt</h4>
       <form id="addItemForm" class="add-form">
-        <input type="text" placeholder="Nazwa produktu" id="itemName" required />
-        <select id="itemCategory">
+        <input type="text" class="centered_text" placeholder="Nazwa produktu" id="itemName" required />
+        <select id="itemCategory" required />
           <option value="">Wybierz kategorię</option>
-          <option value="Nabiał">Nabiał</option>
-          <option value="Pieczywo">Pieczywo</option>
-          <option value="Owoce">Owoce</option>
+          <option value="dairy">Nabiał</option>
+          <option value="bread">Pieczywo</option>
+          <option value="fruits">Owoce</option>
         </select>
         <button type="submit">Dodaj</button>
       </form>
@@ -50,6 +54,7 @@
     </section>
   </div>
 
+  <script src="translations.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
