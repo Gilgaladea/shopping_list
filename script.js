@@ -31,6 +31,7 @@ function renderLists() {
       if (!item.name.toLowerCase().includes(search)) return;
 
       const li = document.createElement("li");
+      li.classList.add("product-item");
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.checked = item.toBuy;
@@ -38,7 +39,13 @@ function renderLists() {
       checkbox.addEventListener("change", () => toggleToBuy(item.id));
 
       li.appendChild(checkbox);
-      li.appendChild(document.createTextNode(" " + item.name));
+      const label = document.createElement("span");
+      label.className = "product-label";
+      label.textContent = item.name;
+      
+      li.appendChild(checkbox);
+      li.appendChild(label);
+      li.appendChild(deleteBtn);
 
       const deleteBtn = document.createElement("span");
       deleteBtn.textContent = "×";
