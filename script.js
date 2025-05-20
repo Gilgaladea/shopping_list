@@ -21,59 +21,65 @@ function renderLists() {
     categories[item.category].push(item);
   });
 
-  for (let category in categories) {
-    const catBlock = document.createElement("div");
-    const title = document.createElement("h3");
-    title.textContent = translations[currentLang].categories[category] || category;
-    catBlock.appendChild(title);
+  categoryOrder.forEach(category => {
+  if (!categories[category]) return;
 
-    categories[category].forEach(item => {
-      if (!item.name.toLowerCase().includes(search)) return;
+  const catBlock = document.createElement("div");
+  const title = document.createElement("h3");
+  title.textContent = translations[currentLang].categories[category] || category;
+  catBlock.appendChild(title);
 
-      const li = document.createElement("li");
-      li.classList.add("product-item");
+  categories[category].forEach(item => {
+    if (!item.name.toLowerCase().includes(search)) return;
 
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.checked = item.toBuy;
-      checkbox.addEventListener("change", () => toggleToBuy(item.id));
-
-      const label = document.createElement("span");
-      label.className = "product-label";
-      label.textContent = item.name;
-
-      const deleteBtn = document.createElement("span");
-      deleteBtn.textContent = "×";
-      deleteBtn.className = "delete-btn";
-      deleteBtn.addEventListener("click", () => deleteProduct(item.id));
-
-      li.appendChild(checkbox);
-      li.appendChild(label);
-      li.appendChild(deleteBtn);
-      catBlock.appendChild(li);
-    });
-
-    productContainer.appendChild(catBlock);
-  }
-
-  // To Buy list
-  shoppingList.filter(i => i.toBuy).forEach(item => {
     const li = document.createElement("li");
     li.classList.add("product-item");
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    checkbox.checked = true;
+    checkbox.checked = item.toBuy;
     checkbox.addEventListener("change", () => toggleToBuy(item.id));
 
     const label = document.createElement("span");
     label.className = "product-label";
     label.textContent = item.name;
 
+    const deleteBtn = document.createElement("span");
+    deleteBtn.textContent = "×";
+    deleteBtn.className = "delete-btn";
+    deleteBtn.addEventListener("click", () => deleteProduct(item.id));
+
     li.appendChild(checkbox);
     li.appendChild(label);
-    toBuyList.appendChild(li);
+    li.appendChild(deleteBtn);
+    catBlock.appendChild(li);
   });
+
+  productContainer.appendChild(catBlock);
+});
+
+  // To Buy list
+  categoryOrder.forEach(category => {
+  shoppingList
+    .filter(i => i.toBuy && i.category === category)
+    .forEach(item => {
+      const li = document.createElement("li");
+      li.classList.add("product-item");
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = true;
+      checkbox.addEventListener("change", () => toggleToBuy(item.id));
+
+      const label = document.createElement("span");
+      label.className = "product-label";
+      label.textContent = item.name;
+
+      li.appendChild(checkbox);
+      li.appendChild(label);
+      toBuyList.appendChild(li);
+    });
+});
 }
 
 // === CONTROLLER ===
@@ -159,7 +165,7 @@ for (let i = 1; i < select.options.length; i++) {
   const val = select.options[i].value;
   select.options[i].textContent = translations[currentLang].categories[val];
 }
-
+  renderCategoryOrderList();
   renderLists();
 }
 
@@ -168,6 +174,64 @@ document.getElementById("languageToggle").addEventListener("click", () => {
   localStorage.setItem("lang", currentLang);
   updateLanguage();
 });
+
+const defaultCategoryOrder = [
+  "dairy", "bread", "fruits", "vegetables", "meat", "fish",
+  "dry", "frozen", "beverages", "snacks", "other"
+];
+
+let categoryOrder = JSON.parse(localStorage.getItem("categoryOrder")) || defaultCategoryOrder;
+
+function saveCategoryOrder() {
+  localStorage.setItem("categoryOrder", JSON.stringify(categoryOrder));
+}
+
+function renderCategoryOrderList() {
+  const ul = document.getElementById("categoryOrderList");
+  ul.innerHTML = "";
+
+  categoryOrder.forEach(key => {
+    const li = document.createElement("li");
+    li.draggable = true;
+    li.dataset.category = key;
+    li.textContent = translations[currentLang].categories[key] || key;
+
+    li.addEventListener("dragstart", () => li.classList.add("dragging"));
+    li.addEventListener("dragend", () => {
+      li.classList.remove("dragging");
+      const newOrder = [...ul.querySelectorAll("li")].map(li => li.dataset.category);
+      categoryOrder = newOrder;
+      saveCategoryOrder();
+      renderLists(); // aktualizujemy widok
+    });
+
+    ul.appendChild(li);
+  });
+
+  ul.addEventListener("dragover", e => {
+    e.preventDefault();
+    const dragging = ul.querySelector(".dragging");
+    const afterElement = getDragAfterElement(ul, e.clientY);
+    if (afterElement == null) {
+      ul.appendChild(dragging);
+    } else {
+      ul.insertBefore(dragging, afterElement);
+    }
+  });
+}
+
+function getDragAfterElement(container, y) {
+  const draggableElements = [...container.querySelectorAll("li:not(.dragging)")];
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+    if (offset < 0 && offset > closest.offset) {
+      return { offset: offset, element: child };
+    } else {
+      return closest;
+    }
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
 
 // Inicjalizacja
 renderLists();

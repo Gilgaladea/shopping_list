@@ -194,3 +194,22 @@ body.dark-mode hr {
 .centered_text {
   text-align: center;
 }
+
+.sortable-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sortable-list li {
+  padding: 8px;
+  margin: 4px 0;
+  background-color: #f0f0f0;
+  cursor: grab;
+  border-radius: 4px;
+  text-align: flex;
+}
+
+.sortable-list li.dragging {
+  opacity: 0.5;
+}
