@@ -137,6 +137,9 @@ window.addEventListener("DOMContentLoaded", () => {
     ? translations[currentLang].themeToggleLight
     : translations[currentLang].themeToggleDark;
 
+  document.querySelector(".toggle-category-order")
+  .addEventListener("click", toggleCategoryOrderVisibility);
+
   updateLanguage();
 });
 
@@ -166,6 +169,7 @@ for (let i = 1; i < select.options.length; i++) {
   select.options[i].textContent = translations[currentLang].categories[val];
 }
   renderCategoryOrderList();
+  document.getElementById("categoryOrderList").style.display = "none";
   renderLists();
 }
 
@@ -231,6 +235,18 @@ function getDragAfterElement(container, y) {
       return closest;
     }
   }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+
+function toggleCategoryOrderVisibility() {
+  const list = document.getElementById("categoryOrderList");
+  const icon = document.getElementById("toggleIcon");
+
+  const isHidden = list.style.display === "none";
+  list.style.display = isHidden ? "block" : "none";
+
+  if (icon) {
+    icon.textContent = isHidden ? "▲" : "▼";
+  }
 }
 
 // Inicjalizacja

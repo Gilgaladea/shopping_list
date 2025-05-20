@@ -217,3 +217,9 @@ body.dark-mode {
   scrollbar-color: #555 #1e1e1e;
   scrollbar-width: thin;
 }
+
+.toggle-category-order {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
