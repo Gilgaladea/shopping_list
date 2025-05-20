@@ -252,3 +252,31 @@ body.dark-mode {
   cursor: pointer;
 }
 
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    order: 3;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+  }
+
+  .main {
+    order: 1;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+  }
+
+  .product-list {
+    order: 2;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
