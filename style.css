@@ -88,7 +88,7 @@ li:hover .delete-btn {
 
 .product-label {
   flex: 1;
-  word-break: break-word;
+  overflow-wrap: break-word;
   max-width: 100%;
   white-space: normal;
 }
@@ -209,7 +209,7 @@ body.dark-mode hr {
   background-color: #f0f0f0;
   cursor: grab;
   border-radius: 4px;
-  text-align: flex;
+  text-align: center;
 }
 
 
