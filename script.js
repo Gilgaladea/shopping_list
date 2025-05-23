@@ -141,6 +141,11 @@ window.addEventListener("DOMContentLoaded", () => {
   .addEventListener("click", toggleCategoryOrderVisibility);
 
   updateLanguage();
+
+  const isVisible = localStorage.getItem("categoryOrderVisible") === "true";
+  document.getElementById("categoryOrderList").style.display = isVisible ? "block" : "none";
+  const icon = document.getElementById("toggleIcon");
+  if (icon) icon.textContent = isVisible ? "▲" : "▼";
 });
 
 let currentLang = "pl";
@@ -170,6 +175,12 @@ for (let i = 1; i < select.options.length; i++) {
 }
   renderCategoryOrderList();
   document.getElementById("categoryOrderList").style.display = "none";
+
+  const isVisible = localStorage.getItem("categoryOrderVisible") === "true";
+  document.getElementById("categoryOrderList").style.display = isVisible ? "block" : "none";
+  const icon = document.getElementById("toggleIcon");
+  if (icon) icon.textContent = isVisible ? "▲" : "▼";
+
   renderLists();
 }
 
@@ -247,6 +258,8 @@ function toggleCategoryOrderVisibility() {
   if (icon) {
     icon.textContent = isHidden ? "▲" : "▼";
   }
+
+  localStorage.setItem("categoryOrderVisible", isHidden ? "true" : "false");
 }
 
 document.addEventListener('DOMContentLoaded', () => {
