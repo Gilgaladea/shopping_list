@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lista zakupów</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
 
-    <!-- Menu -->
+    <!-- Sidebar / Menu -->
     <aside class="sidebar">
       <h3>Menu</h3>
+
       <h4 class="centered_text">Ustawienia</h4>
       <div class="toggle-container">
         <button id="languageToggle">English</button>
@@ -19,10 +20,18 @@
       <div class="toggle-container">
         <button id="themeToggle">Tryb ciemny</button>
       </div>
-      <hr>
+
+      <hr />
+
       <h4 class="centered_text">Dodaj nowy produkt</h4>
       <form id="addItemForm" class="add-form">
-        <input type="text" class="centered_text" placeholder="Nazwa produktu" id="itemName" required>
+        <input 
+          type="text" 
+          id="itemName" 
+          class="centered_text" 
+          placeholder="Nazwa produktu" 
+          required 
+        />
         <select id="itemCategory" required>
           <option value="">Wybierz kategorię</option>
           <option value="dairy">Nabiał</option>
@@ -39,38 +48,41 @@
         </select>
         <button type="submit">Dodaj</button>
       </form>
-      <hr>
-      <h4 class="centered_text"> Zmień kolejność kategorii</h4>
-      <h5 class="toggle-category-order" style="cursor: pointer;"><span id="toggleIcon">▼</span>
+
+      <hr />
+
+      <h4 class="centered_text">Zmień kolejność kategorii</h4>
+      <h5 class="toggle-category-order" style="cursor: pointer;">
+        <span id="toggleIcon">▼</span>
       </h5>
       <ul id="categoryOrderList" class="sortable-list"></ul>
     </aside>
 
-    <!-- Lista zakupów -->
+    <!-- Główna lista zakupów -->
     <main class="main">
       <h2>Lista zakupów</h2>
       <ul id="toBuyList"></ul>
     </main>
 
-    <!-- Wszystkie produkty -->
+    <!-- Lista wszystkich produktów -->
     <section class="product-list">
       <h3>Wszystkie produkty</h3>
       <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Szukaj">
+        <input type="text" id="searchInput" placeholder="Szukaj" />
       </div>
-      <div class="category-list" id="categoryList">
-        <!-- Kategorie będą dynamicznie -->
+      <div id="categoryList" class="category-list">
+        <!-- Kategorie będą generowane dynamicznie -->
       </div>
       <div id="productContainer"></div>
     </section>
+
   </div>
 
   <script src="translations.js"></script>
   <script src="script.js"></script>
+
   <div id="cookie-banner" class="cookie-banner">
-    <p>
-    Ta strona używa plików cookies w celach funkcjonalnych. 
-    </p>
+    <p>Ta strona używa plików cookies w celach funkcjonalnych.</p>
     <button id="accept-cookies">Akceptuję</button>
   </div>
 </body>

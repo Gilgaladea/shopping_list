@@ -131,15 +131,7 @@ li:hover .delete-btn {
   flex-direction: column;
 }
 
-#themeToggle {
-  background: none;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 0.4rem 0.8rem;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
+#themeToggle,
 #languageToggle {
   background: none;
   border: 1px solid #ccc;
@@ -158,6 +150,8 @@ hr {
 body.dark-mode {
   background-color: #121212;
   color: #f0f0f0;
+  scrollbar-color: #555 #1e1e1e;
+  scrollbar-width: thin;
 }
 
 body.dark-mode .sidebar {
@@ -203,6 +197,12 @@ body.dark-mode hr {
   text-align: center;
 }
 
+.toggle-category-order {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
 .sortable-list {
   list-style: none;
   padding: 0;
@@ -218,18 +218,6 @@ body.dark-mode hr {
   text-align: center;
 }
 
-
-body.dark-mode {
-  scrollbar-color: #555 #1e1e1e;
-  scrollbar-width: thin;
-}
-
-.toggle-category-order {
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
-
 #cookie-banner {
   position: fixed;
   bottom: 20px;
@@ -241,7 +229,7 @@ body.dark-mode {
   color: #333;
   border: 1px solid #ccc;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 16px 20px;
   font-size: 14px;
   text-align: center;
