@@ -1,5 +1,6 @@
 // === MODEL ===
-let shoppingList = JSON.parse(localStorage.getItem("shoppingList")) || [];
+
+let shoppingList = [];
 
 function saveData() {
   localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
@@ -265,15 +266,22 @@ function toggleCategoryOrderVisibility() {
 document.addEventListener('DOMContentLoaded', () => {
   const banner = document.getElementById('cookie-banner');
   const acceptBtn = document.getElementById('accept-cookies');
+  const cookiesAccepted = localStorage.getItem('cookiesAccepted');
 
-  if (!localStorage.getItem('cookiesAccepted')) {
+  if (cookiesAccepted !== 'true') {
+    localStorage.clear();
     banner.style.display = 'block';
   }
 
   acceptBtn.addEventListener('click', () => {
     localStorage.setItem('cookiesAccepted', 'true');
     banner.style.display = 'none';
+    location.reload();
   });
+
+  shoppingList = JSON.parse(localStorage.getItem("shoppingList")) || [];
+
+  renderLists(); // Inicjalizacja listy dopiero po załadowaniu danych
 });
 
 // Inicjalizacja
