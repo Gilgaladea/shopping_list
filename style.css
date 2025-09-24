@@ -21,6 +21,7 @@
   --cookie-button-text: #ffffff;
   --scrollbar-thumb: #cccccc;
   --scrollbar-track: #f5f5f5;
+  --checkbox-color: black;
 }
 
 /* Dark Mode */
@@ -44,6 +45,7 @@
   --cookie-button-text: #ffffff;
   --scrollbar-thumb: #555555;
   --scrollbar-track: #1e1e1e;
+  --checkbox-color: white;
 }
 
 /* pasek przewijania */
@@ -208,6 +210,10 @@ li:hover .delete-btn,
   color: var(--text-color);
 }
 
+input[type="checkbox"] {
+  accent-color: var(--checkbox-color);
+}
+
 hr {
   border: none;
   border-top: 1px solid var(--border-color);
@@ -331,6 +337,6 @@ hr {
   }
 
   body.loaded .container {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 }
