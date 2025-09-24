@@ -309,7 +309,6 @@ hr {
     scroll-snap-type: x mandatory;
     width: 100vw;
     height: 100vh;
-    scroll-behavior: smooth;
   }
 
   .sidebar,
@@ -321,7 +320,6 @@ hr {
     scroll-snap-align: start;
   }
 
-  /* Kolejność i marginesy: środek od razu wyśrodkowany */
   .sidebar {
     order: 1;
   }
@@ -332,7 +330,6 @@ hr {
     order: 3;
   }
 
-  /* Po otwarciu ustaw scroll tak, żeby main był na środku */
   body.loaded .container {
     scroll-behavior: smooth;
   }

@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  //document.body.classList.add('loaded');
+  document.body.classList.add('loaded');
   const container = document.querySelector('.container');
   const main = document.querySelector('.main');
   if (container && main) {
