@@ -1,5 +1,4 @@
 // === MODEL ===
-
 let shoppingList = [];
 let currentLang = "pl";
 
@@ -17,6 +16,7 @@ function saveData() {
 
 function toggleToBuy(id) {
   const item = shoppingList.find(i => i.id === id);
+  if (!item) return;
   item.toBuy = !item.toBuy;
   saveData();
   renderLists();
@@ -29,6 +29,31 @@ function deleteProduct(id) {
 }
 
 // === VIEW ===
+function createProductElement(item) {
+  const li = document.createElement("li");
+  li.classList.add("product-item");
+  li.dataset.id = item.id;
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = item.toBuy;
+  checkbox.addEventListener("change", () => toggleToBuy(item.id));
+
+  const label = document.createElement("span");
+  label.className = "product-label";
+  label.textContent = item.name;
+
+  const deleteBtn = document.createElement("span");
+  deleteBtn.textContent = "×";
+  deleteBtn.className = "delete-btn";
+  deleteBtn.addEventListener("click", () => deleteProduct(item.id));
+
+  li.appendChild(checkbox);
+  li.appendChild(label);
+  li.appendChild(deleteBtn);
+
+  return li;
+}
 
 function renderLists() {
   const toBuyList = document.getElementById("toBuyList");
@@ -55,27 +80,7 @@ function renderLists() {
 
     categories[category].forEach(item => {
       if (!item.name.toLowerCase().includes(search)) return;
-
-      const li = document.createElement("li");
-      li.classList.add("product-item");
-
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.checked = item.toBuy;
-      checkbox.addEventListener("change", () => toggleToBuy(item.id));
-
-      const label = document.createElement("span");
-      label.className = "product-label";
-      label.textContent = item.name;
-
-      const deleteBtn = document.createElement("span");
-      deleteBtn.textContent = "×";
-      deleteBtn.className = "delete-btn";
-      deleteBtn.addEventListener("click", () => deleteProduct(item.id));
-
-      li.appendChild(checkbox);
-      li.appendChild(label);
-      li.appendChild(deleteBtn);
+      const li = createProductElement(item);
       catBlock.appendChild(li);
     });
 
@@ -84,7 +89,7 @@ function renderLists() {
 
   categoryOrder.forEach(category => {
     shoppingList
-      .filter(i => i.toBuy && i.category === category)
+      .filter(i => i.toBuy && i.category === category && i.name.toLowerCase().includes(search))
       .forEach(item => {
         const li = document.createElement("li");
         li.classList.add("product-item");
@@ -171,7 +176,6 @@ function updateLanguageUI() {
 }
 
 // === CONTROLLER ===
-
 function toggleCategoryOrderVisibility() {
   const list = document.getElementById("categoryOrderList");
   const icon = document.getElementById("toggleIcon");
@@ -207,6 +211,7 @@ function setupEventListeners() {
     saveData();
     renderLists();
     e.target.reset();
+    document.getElementById("itemName").focus();
   });
 
   document.getElementById("searchInput").addEventListener("input", renderLists);
@@ -231,21 +236,18 @@ function setupEventListeners() {
 }
 
 // === INIT ===
-
 document.addEventListener("DOMContentLoaded", () => {
   const banner = document.getElementById('cookie-banner');
   const acceptBtn = document.getElementById('accept-cookies');
   const cookiesAccepted = localStorage.getItem('cookiesAccepted');
 
   if (cookiesAccepted !== 'true') {
-    localStorage.clear();
     banner.style.display = 'block';
   }
 
   acceptBtn.addEventListener('click', () => {
     localStorage.setItem('cookiesAccepted', 'true');
     banner.style.display = 'none';
-    location.reload();
   });
 
   shoppingList = JSON.parse(localStorage.getItem("shoppingList")) || [];
@@ -263,4 +265,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setupEventListeners();
   updateLanguageUI();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  //document.body.classList.add('loaded');
+  const container = document.querySelector('.container');
+  const main = document.querySelector('.main');
+  if (container && main) {
+    container.scrollLeft = main.offsetLeft;
+  }
 });
